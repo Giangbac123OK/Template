@@ -1,16 +1,49 @@
-<div class="header">
-    <h4>Quản lý sản phẩm</h4>
-    <nav class="nav">
-        <a class="nav-link" href="#">Xem gợi ý sản phẩm hot</a>
-        <a class="nav-link" href="#">Công cụ phân tích</a>
-        <a class="nav-link" href="#">Quản lý số lượng lớn</a>
-        <button class="btn btn-primary ml-auto">+ Thêm sản phẩm</button>
-    </nav>
-</div>
-
-<div class="content">
-    <div class="illustration"></div>
-    <h5>Bạn hiện chưa có sản phẩm nào</h5>
-    <p>Đây là nơi giúp bạn quản lý sản phẩm của mình. Hãy đăng sản phẩm và bắt đầu kinh doanh trên Lazada ngay từ bây giờ.</p>
-    <button class="btn btn-primary btn-custom">Thêm sản phẩm</button>
-</div>
+<form class="d-flex justify-content-center my-3">
+    <input class="form-control me-2" style="width: 50%;" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+<a class="btn btn-primary mb-3" href="#!addsanpham">Thêm sản phẩm <i class="bi bi-plus"></i></a>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+        <td>
+            <button class="btn btn-outline-warning">Chi tiết sản phẩm</button>
+            <button class="btn btn-outline-success">Sửa sản phẩm</button>
+            <button class="btn btn-outline-danger">Xóa sản phẩm</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+        <td>
+            <button class="btn btn-outline-warning">Chi tiết sản phẩm</button>
+            <button class="btn btn-outline-success">Sửa sản phẩm</button>
+            <button class="btn btn-outline-danger">Xóa sản phẩm</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+        <td>
+            <button class="btn btn-outline-warning">Chi tiết sản phẩm</button>
+            <button class="btn btn-outline-success">Sửa sản phẩm</button>
+            <button class="btn btn-outline-danger">Xóa sản phẩm</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
