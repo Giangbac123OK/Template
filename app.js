@@ -20,6 +20,9 @@ const app = angular.module("myApp", ["ngRoute"]);
         .when("/quenmatkhau", {
             templateUrl: "./Views/quenmatkhau.html"
         })
+        .when("/nvlayout", {
+            templateUrl: "./Views/layoutnhanvien.html"
+        })
         .otherwise({
             redirectTo: "/"
         });
