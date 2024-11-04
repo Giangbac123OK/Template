@@ -23,6 +23,9 @@ const app = angular.module("myApp", ["ngRoute"]);
         .when("/nvlayout", {
             templateUrl: "./Views/layoutnhanvien.html"
         })
+        .when("/kmvoucher", {
+            templateUrl: "./Views/khuyenmai_voucher.html"
+        })
         .otherwise({
             redirectTo: "/"
         });
