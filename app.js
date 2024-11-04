@@ -6,7 +6,10 @@ const app = angular.module("myApp", ["ngRoute"]);
             templateUrl: "./Views/home.html"
         })
         .when("/quanlysanpham", {
-            templateUrl: "./Views/quanlysanpham.html"
+            templateUrl: "./Views/quanlysanpham.html",
+            css: "css/quanlysanpham.css"
+        }).when("/quanlyhoadonnhap", {
+            templateUrl: "./Views/quanlyhoadonnhap.html"
         })
         .when("/addsanpham", {
             templateUrl: "./Views/addsanpham.html"

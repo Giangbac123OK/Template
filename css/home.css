@@ -18,3 +18,16 @@
     background-color: #0056b3;
     border-color: #0056b3;
 }
+.col-3{
+    width: 15%;
+}
+#TenLogo{
+    font-size: 1.5rem !important;
+    position: relative;
+    top: 20px; 
+    right: 10px; 
+}
+#menutaikhoan{
+    position: absolute;
+    transform: translate(-60px, 5px);
+}
