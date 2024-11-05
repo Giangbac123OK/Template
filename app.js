@@ -6,10 +6,10 @@ const app = angular.module("myApp", ["ngRoute"]);
             templateUrl: "./Views/home.html"
         })
         .when("/quanlysanpham", {
-            templateUrl: "./Views/quanlysanpham.html"
+            templateUrl: "./Views/SanPham/listSanpham.html"
         })
         .when("/addsanpham", {
-            templateUrl: "./Views/addsanpham.html"
+            templateUrl: "./Views/SanPham/addsanpham.html"
         })
         .when("/login", {
             templateUrl: "./Views/login.html"
@@ -22,6 +22,9 @@ const app = angular.module("myApp", ["ngRoute"]);
         })
         .when("/nvlayout", {
             templateUrl: "./Views/layoutnhanvien.html"
+        })
+        .when("/thongke", {
+            templateUrl: "./Views/thongke.html"
         })
         .otherwise({
             redirectTo: "/"
