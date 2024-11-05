@@ -1,18 +1,19 @@
 <div class="row">
-    <div class="col">
-        <form class="d-flex justify-content-left my-3">
-            <input class="form-control me-2" style="width: 50%;" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    </div>
-    <div class="col">
-        <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="position: relative; top: 15px;">
-                Launch demo modal
-            </button>
-        </div>
+  <div class="col">
+    <form class="d-flex justify-content-left my-3">
+      <input class="form-control me-2" style="width: 50%;" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+  <div class="col">
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        style="position: relative; top: 15px;">
+        Thêm Hoá Đơn Nhập
+      </button>
     </div>
   </div>
+</div>
 </div>
 <div class="table-responsive" style="text-align: center;">
   <table class="table align-middle">
@@ -33,14 +34,14 @@
         <td>Otto</td>
         <td>@mdo</td>
         <td>
-            <div class="form-check form-switch d-flex justify-content-center">
-                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            </div>
-        </td>        
+          <div class="form-check form-switch d-flex justify-content-center">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          </div>
+        </td>
         <td>
-            <button class="btn btn-outline-warning">Chi tiết</button>
-            <button class="btn btn-outline-success">Sửa</button>
-            <button class="btn btn-outline-danger">Xóa</button>
+          <button class="btn btn-outline-warning">Chi tiết</button>
+          <button class="btn btn-outline-success">Sửa</button>
+          <button class="btn btn-outline-danger">Xóa</button>
         </td>
       </tr>
       <tr>
@@ -49,15 +50,112 @@
         <td>Thornton</td>
         <td>@fat</td>
         <td>
-            <div class="form-check form-switch d-flex justify-content-center">
-                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            </div>
+          <div class="form-check form-switch d-flex justify-content-center">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          </div>
         </td>
         <td>
-            <button class="btn btn-outline-warning">Chi tiết</button>
-            <button class="btn btn-outline-success">Sửa</button>
-            <button class="btn btn-outline-danger">Xóa</button>
+          <button class="btn btn-outline-warning">Chi tiết</button>
+          <button class="btn btn-outline-success">Sửa</button>
+          <button class="btn btn-outline-danger">Xóa</button>
         </td>
       </tr>
     </tbody>
   </table>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm Hoá Đơn Nhập</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3">
+          <div class="col-md-6">
+            <label for="nhanvien" class="form-label">Nhân Viên</label>
+            <input type="email" class="form-control" id="nhanvien">
+          </div>
+          <div class="col-md-6">
+            <label for="ngaynhap" class="form-label">Ngày Nhập</label>
+            <input type="password" class="form-control" id="ngaynhap">
+          </div>
+          <div class="col-md-4">
+            <label for="nhacungcap" class="form-label">Nhà Cung Cấp</label>
+            <select id="nhacungcap" class="form-select">
+              <option selected>Choose...</option>
+              <option>...</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="nguoigiao" class="form-label">Người Giao</label>
+            <input type="text" class="form-control" id="nguoigiao">
+          </div>
+          <div class="col-md-4">
+            <label for="sdtnguoigiao" class="form-label">SĐT Người Giao</label>
+            <input type="text" class="form-control" id="sdtnguoigiao">
+          </div>
+          <div class="col-md-4">
+            <label for="tongtienhang" class="form-label">Tổng Tiền hàng</label>
+            <input type="text" class="form-control" id="tongtienhang">
+          </div>
+          <div class="col-12">
+            <div class="form-check form-switch">
+              <label class="form-check-label" for="gridCheck">
+                Trạng Thái
+              </label>
+              <input class="form-check-input" type="checkbox" role="switch" id="gridCheck">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="row">
+              <div class="col-4">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              </div>
+              <div class="col-6">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </div>
+            </div>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">First</th>
+                  <th scope="col">Last</th>
+                  <th scope="col">Handle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacob</td>
+                  <td>Thornton</td>
+                  <td>@fat</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td colspan="2">Larry the Bird</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <div class="d-flex flex-row-reverse">
+          <div class="p-2">
+            <button type="submit" class="btn btn-primary">Thêm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
