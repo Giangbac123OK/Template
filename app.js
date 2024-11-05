@@ -5,11 +5,8 @@ app.config(($routeProvider) => {
     .when("/", {
         templateUrl: "./Views/home.html"
     })
-    .when("/quanlysanpham", {
-        templateUrl: "./Views/SanPham/listSanpham.html"
-    })
-    .when("/addsanpham", {
-        templateUrl: "./Views/SanPham/addsanpham.html"
+    .when("/danhsach", {
+        templateUrl: "./Views/SanPham/danhsach.html"
     })
     .when("/login", {
         templateUrl: "./Views/login.html"
