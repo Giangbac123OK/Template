@@ -26,6 +26,9 @@ app.config(($routeProvider) => {
     .when("/kmvoucher", {
         templateUrl: "./Views/khuyenmai_voucher.html"
     })
+    .when("/Acount", {
+        templateUrl: "./Views/layoutAcountAcc.html"
+    })
     .otherwise({
         redirectTo: "/"
     });
