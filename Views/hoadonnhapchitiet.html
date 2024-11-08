@@ -1,0 +1,188 @@
+<div class="row" style="margin-left: 5px;">
+  <div class="col">
+    <form class="d-flex justify-content-left my-3">
+      <input class="form-control me-2" style="width: 50%;" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+  <div class="col">
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Add"
+        style="position: relative; top: 15px;">
+        Thêm Hoá Đơn Nhập Chi Tiết
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+<div class="table-responsive" style="text-align: center; margin-left: 5px;">
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Sản Phẩm</th>
+        <th scope="col">Số Lượng</th>
+        <th scope="col">Giá Nhập</th>
+        <th scope="col">Ghi Chú</th>
+        <th scope="col">Chức Năng</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr>
+        <th scope="row">1</th>
+        <td>Giày A</td>
+        <td>10</td>
+        <td>12.000.000VNĐ</td>
+        <td>Sản Phẩm A</td>
+        <td>
+          <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#Detail">Chi tiết</button>
+          <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#Update">Sửa</button>
+          <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#Delete">Xóa</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Giày B</td>
+        <td>20</td>
+        <td>13.000.000VNĐ</td>
+        <td>Sản Phẩm B</td>
+        <td>
+          <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#Detail">Chi tiết</button>
+          <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#Update">Sửa</button>
+          <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#Delete">Xóa</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="modal fade" id="Add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm Hoá Đơn Nhập Chi Tiết</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="exampleInputSanPham" class="form-label">Sản Phẩm</label>
+          <select id="exampleInputSanPham" class="form-select">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputSoLuong" class="form-label">Số Lượng</label>
+          <input type="number" class="form-control" id="exampleInputSoLuong">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputGiaNhap" class="form-label">Giá Nhập</label>
+          <input type="number" class="form-control" id="exampleInputSoLuong">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputGhiChu" class="form-label">Ghi Chú</label>
+          <input type="text" class="form-control" id="exampleInputGhiChu">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Thêm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="Detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Hoá Đơn Nhập Chi Tiết</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="exampleDetailSanPham" class="form-label">Sản Phẩm</label>
+          <input type="text" class="form-control" id="exampleDetailSanPham">
+        </div>
+        <div class="mb-3">
+          <label for="exampleDetailSoLuong" class="form-label">Số Lượng</label>
+          <input type="number" class="form-control" id="exampleDetailSoLuong">
+        </div>
+        <div class="mb-3">
+          <label for="exampleDetailSoLuong" class="form-label">Giá Nhập</label>
+          <input type="number" class="form-control" id="exampleDetailSoLuong">
+        </div>
+        <div class="mb-3">
+          <label for="exampleDetailGhiChu" class="form-label">Ghi Chú</label>
+          <input type="text" class="form-control" id="exampleDetailGhiChu">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="Update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm Hoá Đơn Nhập Chi Tiết</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="exampleUpdateSanPham" class="form-label">Sản Phẩm</label>
+          <select id="exampleUpdateSanPham" class="form-select">
+            <option selected>Choose...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="exampleUpdateSoLuong" class="form-label">Số Lượng</label>
+          <input type="number" class="form-control" id="exampleUpdateSoLuong">
+        </div>
+        <div class="mb-3">
+          <label for="exampleUpdateGiaNhap" class="form-label">Giá Nhập</label>
+          <input type="number" class="form-control" id="exampleUpdateGiaNhap">
+        </div>
+        <div class="mb-3">
+          <label for="exampleUpdateGhiChu" class="form-label">Ghi Chú</label>
+          <input type="text" class="form-control" id="exampleUpdateGhiChu">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Sửa</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="Delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm Hoá Đơn Nhập Chi Tiết</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="exampleDeleteSanPham" class="form-label">Sản Phẩm</label>
+          <input type="number" class="form-control" id="exampleDeleteSanPham">
+        </div>
+        <div class="mb-3">
+          <label for="exampleDeleteSoLuong" class="form-label">Số Lượng</label>
+          <input type="number" class="form-control" id="exampleDeleteSoLuong">
+        </div>
+        <div class="mb-3">
+          <label for="exampleDeleteGiaNhap" class="form-label">Giá Nhập</label>
+          <input type="number" class="form-control" id="exampleDeleteGiaNhap">
+        </div>
+        <div class="mb-3">
+          <label for="exampleDelteteGhiSo" class="form-label">Ghi Chú</label>
+          <input type="text" class="form-control" id="exampleDelteteGhiSo">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Xoá</button>
+      </div>
+    </div>
+  </div>
+</div>

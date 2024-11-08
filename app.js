@@ -8,8 +8,12 @@ const app = angular.module("myApp", ["ngRoute"]);
         .when("/quanlysanpham", {
             templateUrl: "./Views/quanlysanpham.html",
             css: "css/quanlysanpham.css"
-        }).when("/quanlyhoadonnhap", {
+        })
+        .when("/quanlyhoadonnhap", {
             templateUrl: "./Views/quanlyhoadonnhap.html"
+        }).
+        when("/hoadonnhapchitiet", {
+            templateUrl: "./Views/hoadonnhapchitiet.html"
         })
         .when("/addsanpham", {
             templateUrl: "./Views/addsanpham.html"
