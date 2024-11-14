@@ -11,13 +11,32 @@
           font-size: 2rem;
           font-weight: bold;
       }
-      .width{
-        max-width: 400px;
-        margin: auto;
-        padding: auto;
+      .width {
+          max-width: 400px;
+          margin: auto;
+          padding: auto;
+      }
+      .select-container {
+          display: flex;
+          justify-content: flex-end;
+          margin-bottom: 1rem;
+      }
+      .form-select {
+          width: 150px;
       }
 </style>
-<h1>Báo cáo thống kê cửa hàng</h1>
+
+<h1 class="mb-3">Báo cáo thống kê cửa hàng</h1>
+
+<div class="select-container">
+    <select class="form-select text-center">
+        <option class="text-center" value="Ngày">Ngày</option>
+        <option class="text-center" value="Tuần">Tuần</option>
+        <option class="text-center" value="Tháng">Tháng</option>
+        <option class="text-center" selected value="Năm">Năm</option>
+    </select>
+</div>
+
 <div class="row mt-4 width">
     <div class="card text-white bg-primary mb-4">
         <div class="card-header">Số lượng hàng tồn</div>
@@ -26,6 +45,7 @@
         </div>
     </div>
 </div>
+
 <div class="row mt-4 width">
     <div class="card text-white bg-success mb-4">
         <div class="card-header">Doanh thu</div>
@@ -34,6 +54,7 @@
         </div>
     </div>
 </div>
+
 <div class="row mt-4 width">
     <div class="card text-white bg-warning mb-4">
         <div class="card-header">Số lượng bán</div>
@@ -42,6 +63,7 @@
         </div>
     </div>
 </div>
+
 <div class="row mt-4 width">
     <div class="card text-white bg-danger mb-4">
         <div class="card-header">Lợi nhuận</div>
