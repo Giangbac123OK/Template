@@ -42,18 +42,9 @@
         border-radius: 5px; 
     }
     
-/* Phần tử select mặc định không có border */
-.select-hover {
-    border: none; /* Không có viền mặc định */
-    box-shadow: none; /* Không có bóng đổ */
-    outline: none; /* Không có viền focus mặc định */
-}
-
 /* Khi hover, chỉ thay đổi border và các thuộc tính của select */
 .select-hover:hover {
     cursor: pointer; /* Con trỏ chuột sẽ thành hình bàn tay khi hover */
-    border: 2px solid black; /* Thêm viền đen khi hover */
-    border-radius: 5px; /* Bo góc viền */
 }
 
 
