@@ -6,6 +6,7 @@
     <title>Dashboard Menu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -124,8 +125,8 @@
         <div class="user-info profile">
             <img src="https://via.placeholder.com/50" alt="User Photo">
             <div>
-                <div class="user-name">Timotheus Bendan</div>
-                <div class="user-role">Sales Manager</div>
+                <div class="user-name"></div>
+                <div class="user-role"></div>
             </div>
             <!-- Profile dropdown options -->
             <div class="profile-options">
@@ -161,7 +162,7 @@
             <li class="menu-item" onclick="setActiveMenu(this)">
                 <i class="fas fa-user-cog"></i> Quản lý tài khoản
             </li>
-            <li class="menu-item" onclick="setActiveMenu(this)">
+            <li class="menu-item" onclick="logout()">
                 <i class="fas fa-sign-out-alt"></i> Đăng xuất
             </li>
         </ul>
@@ -176,6 +177,25 @@
     <!-- Font Awesome icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script>
+         // JavaScript để hiển thị tên nhân viên và vai trò
+    document.addEventListener('DOMContentLoaded', function () {
+        // Lấy thông tin từ localStorage
+        const tenNhanvien = localStorage.getItem('tenNhanvien');
+        const vaiTro = localStorage.getItem('vaiTro');
+
+        // Kiểm tra nếu thông tin tồn tại
+        if (tenNhanvien && vaiTro) {
+            // Hiển thị tên nhân viên
+            document.querySelector('.user-name').textContent = tenNhanvien;
+
+            // Kiểm tra vai trò và hiển thị phù hợp
+            if (vaiTro === '0') {
+                document.querySelector('.user-role').textContent = 'Admin';
+            } else {
+                document.querySelector('.user-role').textContent = 'Nhân viên';
+            }
+        }
+    });
         // JavaScript to set active menu item
         function setActiveMenu(element) {
             // Remove active class from all menu items
@@ -185,6 +205,35 @@
             // Add active class to the clicked menu item
             element.classList.add('active');
         }
+        function logout() {
+        // Xóa thông tin trong localStorage
+        localStorage.removeItem('tenNhanvien');
+        localStorage.removeItem('vaiTro');
+        
+        // Chuyển hướng về trang login.html
+        window.location.href = 'login.html';
+         // Để ngăn người dùng quay lại bằng cách nhấn nút "Quay lại" của trình duyệt
+         history.replaceState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        // Kiểm tra nếu tên nhân viên không tồn tại trong localStorage
+        if (!localStorage.getItem('tenNhanvien')) {
+        
+        
+            // Chuyển hướng về trang login.html
+            window.location.href = 'login.html';
+        }
+
+        // Để ngăn người dùng quay lại bằng cách nhấn nút "Quay lại" của trình duyệt
+        history.replaceState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+    });
     </script>
 </body>
 </html>

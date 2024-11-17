@@ -19,7 +19,7 @@
         .login-container {
             background-color: #fff;
             border-radius: 10px;
-            width: 600px; /* Giảm chiều rộng xuống 600px */
+            width: 600px;
             display: flex;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -34,10 +34,6 @@
             font-size: 24px;
             font-weight: bold;
             color: #333;
-        }
-        .login-container .left p {
-            color: #777;
-            margin-bottom: 20px;
         }
         .form-control {
             margin-bottom: 15px;
@@ -54,46 +50,6 @@
         .btn-primary:hover {
             background-color: #e65a2d;
         }
-        .login-container .left a {
-            font-size: 14px;
-            color: #ff6b35;
-        }
-        .login-container .right h2 {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ff6b35;
-        }
-        .login-container .right p {
-            color: #777;
-            margin-bottom: 20px;
-        }
-        .social-btn {
-            width: 100%;
-            margin-bottom: 10px;
-            height: 45px;
-            font-size: 14px;
-        }
-        .social-btn.google {
-            background-color: #db4437;
-            color: #fff;
-        }
-        .social-btn.facebook {
-            background-color: #3b5998;
-            color: #fff;
-        }
-        .privacy-links {
-            font-size: 13px;
-            text-align: center;
-            margin-top: 15px;
-        }
-        .privacy-links a {
-            color: #ff6b35;
-            text-decoration: none;
-            margin: 0 5px;
-        }
-        .privacy-links a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
@@ -103,26 +59,72 @@
     <div class="left">
         <h2>Sign In</h2>
         <p>Sign in to Vetra to continue</p>
-        <form>
-            <input type="email" class="form-control" placeholder="Enter email" required>
-            <input type="password" class="form-control" placeholder="Enter password" required>
-            <a href="#">Can't access your account? <span style="color: #ff6b35;">Reset your password now.</span></a>
+        <form id="loginForm">
+            <!-- Thay đổi số điện thoại thành email -->
+            <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+            <input type="password" id="password" class="form-control" placeholder="Enter password" required>
+            <a href="quenmatkhau.html">Can't access your account? <span style="color: #ff6b35;">Reset your password now.</span></a>
             <button type="submit" class="btn btn-primary mt-3">Sign In</button>
         </form>
-        <button class="btn social-btn google">Sign in with Google</button>
-        <button class="btn social-btn facebook">Sign in with Facebook</button>
-    </div>
-
-    <!-- Right Side - Sign Up -->
-    <div class="right text-center">
-        <h2>Welcome to T7M!</h2>
-        <p>If you don't have an account, would you like to register right now?</p>
-        <button class="btn btn-primary">Sign Up</button>
-        <div class="privacy-links">
-            <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
-        </div>
+        <p id="loginMessage" class="mt-2"></p>
     </div>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Ngăn chặn form submit mặc định
+
+            const email = document.getElementById('email').value; // Lấy email thay vì số điện thoại
+            const password = document.getElementById('password').value;
+
+            // Tạo đối tượng chứa dữ liệu đăng nhập
+            const loginData = {
+                email: email, // Thay đổi từ sdt sang email
+                password: password
+            };
+
+            // Gửi yêu cầu POST đến API
+            fetch('https://localhost:7297/api/Nhanvien/login', { // Thay đổi nếu cần
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(loginData) // Chuyển đổi đối tượng thành JSON
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const loginMessage = document.getElementById('loginMessage');
+
+                if (data.success) { // Kiểm tra phản hồi từ API
+                    // Lưu tên và vai trò của nhân viên vào localStorage
+                    localStorage.setItem('tenNhanvien', data.data.hoten);
+                    localStorage.setItem('vaiTro', data.data.role);
+                    loginMessage.textContent = 'Đăng nhập thành công!';
+                    loginMessage.classList.remove('text-danger');
+                    loginMessage.classList.add('text-success');
+                    // Chuyển hướng sau khi đăng nhập thành công
+                    window.location.href = 'menu.html';
+                } else {
+                    loginMessage.textContent = 'Email hoặc mật khẩu không đúng.';
+                    loginMessage.classList.add('text-danger');
+                }
+            })
+            .catch(error => {
+                console.error('Có lỗi xảy ra:', error);
+                const loginMessage = document.getElementById('loginMessage');
+                loginMessage.textContent = 'Đã xảy ra lỗi khi kết nối đến server.';
+                loginMessage.classList.add('text-danger');
+            });
+        });
+    });
+</script>
+
 </body>
 </html>
+
