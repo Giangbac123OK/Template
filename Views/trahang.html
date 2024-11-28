@@ -1,0 +1,305 @@
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Danh Sách Trả Hàng</h1>
+    <div class="card">
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Tìm kiếm...">
+                        <button class="btn btn-outline-secondary" type="button" id="searchButton">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#ThemModal">
+                        <i class="fas fa-plus"></i> Thêm mới
+                    </button>
+                </div>
+            </div>
+            <div class="table-responsive table-striped">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th>STT</th>
+                            <th>ID</th>
+                            <th>Tên khách hàng</th>
+                            <th>Mã khách hàng</th>
+                            <th>Số tiền hoàn</th>
+                            <th>Ngày trả hàng</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center" ng-repeat="x in Listdata">
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{x.id}}</td>
+                            <td>{{x.tenkhachhang}}</td>
+                            <td>{{x.idkh}}</td>
+                            <td>{{x.sotienhoan}}</td>
+                            <td>{{x.ngaytrahangthucte}}</td>
+                            <td ng-if="x.trangthai==0"><span class="badge bg-success">Đã sử lý</span></td>
+                            <td ng-if="x.trangthai==1"><span class="badge bg-danger">Đang sử lý</span></td>
+                            <td>
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ChitietModal" ng-click="DetailsTrahang(x.id)">Chi tiết</button>
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#SuaModal" ng-click="DataEditTrahang(x.id)">Sửa</button>
+                                <button type="button" class="btn btn-danger"  ng-click="DeleteTrahang(x.id)">Xóa</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Xóa Trả Hàng -->
+<div class="modal fade" id="XoaModal" tabindex="-1" aria-labelledby="XoaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="XoaModalLabel"><i class="bi bi-exclamation-circle-fill"></i> Cảnh báo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có muốn xóa dữ liệu hay không? Nếu có thì chọn xóa và không khôi phục lại được dữ liệu!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Thêm Trả Hàng -->
+<div class="modal fade" id="ThemModal" tabindex="-1" aria-labelledby="ThemModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ThemModalLabel">Thêm thông tin hóa đơn trả hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Tên khách hàng</label>
+                    <input type="text" class="form-control" ng-model="dataAdd.tenkhachhang">
+                </div>
+                <div class="mb-3 row">
+                    <div class="col">
+                        <label class="form-label">Mã khách hàng</label>
+                        <select class="form-select" ng-model="dataAdd.idkh">
+                            <option value="" selected>Chọn khách hàng</option>
+                            <option ng-repeat="kh in ListdataKH" value="{{kh.id}}">{{kh.id}}: {{kh.ten}}</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Mã nhân viên</label>
+                        <select class="form-select" ng-model="dataAdd.idnv">
+                            <option value="" selected>Chọn nhân viên</option>
+                            <option ng-repeat="nv in ListdataNV" value="{{nv.id}}">{{nv.id}}: {{nv.hoten}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Số tiền hoàn trả</label>
+                    <input type="number" class="form-control" ng-model="dataAdd.sotienhoan">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Phương thức thanh toán</label>
+                    <select class="form-select" ng-model="dataAdd.phuongthuchoantien">
+                        <option value="" selected>Chọn phương thức thanh toán</option>
+                        <option ng-repeat="x in ListdataPTTT" value="{{x.tenpttt}}">{{x.tenpttt}}</option>
+                    </select>
+                </div>
+                <div class="mb-3 row">
+                    <div class="col">
+                        <label class="form-label">Ngày trả hàng dự kiến</label>
+                        <input type="date" class="form-control" ng-model="dataAdd.ngaytrahangdukien">
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Ngày trả hàng thực tế</label>
+                        <input type="date" class="form-control" ng-model="dataAdd.ngaytrahangthucte">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Lý do trả hàng</label>
+                    <textarea class="form-control" ng-model="dataAdd.lydotrahang"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Ghi chú</label>
+                    <textarea class="form-control" id="ghichu" ng-model="dataAdd.ghichu"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" ng-click="AddTrahang()">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Sửa Trả Hàng -->
+<div class="modal fade" id="SuaModal" tabindex="-1" aria-labelledby="SuaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="SuaModalLabel">Sửa thông tin hóa đơn trả hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Tên khách hàng</label>
+                    <input type="text" class="form-control" ng-model="dataEdit.tenkhachhang">
+                </div>
+                <div class="mb-3 row">
+                    <div class="col">
+                        <label class="form-label">Mã khách hàng</label>
+                        <select class="form-select" ng-model="dataEdit.idkh">
+                            <option value="" selected>Chọn khách hàng</option>
+                            <option ng-repeat="kh in ListdataKH" value="{{kh.id}}">{{kh.id}}: {{kh.ten}}</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Mã nhân viên</label>
+                        <select class="form-select" ng-model="dataEdit.idnv">
+                            <option value="" selected>Chọn nhân viên</option>
+                            <option ng-repeat="nv in ListdataNV" value="{{nv.id}}">{{nv.id}}: {{nv.hoten}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Số tiền hoàn trả</label>
+                    <input type="number" class="form-control" ng-model="dataEdit.sotienhoan">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Phương thức thanh toán</label>
+                    <select class="form-select" ng-model="dataEdit.phuongthuchoantien">
+                        <option value="" selected>Chọn phương thức thanh toán</option>
+                        <option ng-repeat="x in ListdataPTTT" value="{{x.tenpttt}}">{{x.tenpttt}}</option>
+                    </select>
+                </div>
+                <div class="mb-3 row">
+                    <div class="col">
+                        <label class="form-label">Ngày trả hàng dự kiến</label>
+                        <input type="date" class="form-control" ng-model="dataEdit.ngaytrahangdukien">
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Ngày trả hàng thực tế</label>
+                        <input type="date" class="form-control" ng-model="dataEdit.ngaytrahangthucte">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Lý do trả hàng</label>
+                    <textarea class="form-control" ng-model="dataEdit.lydotrahang"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Ghi chú</label>
+                    <textarea class="form-control" id="ghichu" ng-model="dataEdit.ghichu"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Trạng thái</label>
+                    <div class="form-check form-switch">
+                        <input 
+                          class="form-check-input" 
+                          type="checkbox" 
+                          id="flexSwitchCheckDefault" 
+                          ng-model="dataEdit.trangthai">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">
+                          {{ dataEdit.trangthai ? 'Đã xử lý' : 'Chưa xử lý' }}
+                        </label>
+                      </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" ng-click="AddTrahang()">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Chi tiết trả hàng -->
+<div class="modal fade" id="ChitietModal" tabindex="-1" aria-labelledby="ChitietModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ChitietModalLabel">Chi tiết trả hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Tên khách hàng</th>
+                            <th scope="col">Mã khách hàng</th>
+                            <th scope="col">Mã nhân viên</th>
+                            <th scope="col">Số tiền hoàn</th>
+                            <th scope="col">Phương thức hoàn tiền</th>
+                            <th scope="col">Ngày trả hàng dự kiến</th>
+                            <th scope="col">Ngày trả hàng thực tế</th>
+                            <th scope="col">Lý do trả hàng</th>
+                            <th scope="col">Chú thích</th>
+                            <th scope="col">Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="Listdetails">
+                            <td>{{Listdetails.id}}</td>
+                            <td>{{Listdetails.tenkhachhang}}</td>
+                            <td>{{Listdetails.idkh}}</td>
+                            <td>{{Listdetails.idnv}}</td>
+                            <td>{{Listdetails.sotienhoan | currency}}</td>
+                            <td>{{Listdetails.phuongthuchoantien}}</td>
+                            <td>{{Listdetails.ngaytrahangdukien | date:'dd/MM/yyyy'}}</td>
+                            <td>{{Listdetails.ngaytrahangthucte | date:'dd/MM/yyyy'}}</td>
+                            <td>{{Listdetails.lydotrahang}}</td>
+                            <td>{{Listdetails.chuthich}}</td>
+                            <td>
+                                <span ng-if="Listdetails.trangthai == 1" class="badge bg-success">Đã xử lý</span>
+                                <span ng-if="Listdetails.trangthai == 0" class="badge bg-danger">Đang xử lý</span>
+                            </td>
+                        </tr>
+                        <tr ng-if="!Listdetails">
+                            <td colspan="11">Chọn mục để xem chi tiết</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h6 class="text-center">Chi tiết hóa đơn</h6>
+                <table class="table text-center">
+                    <thead>
+                      <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Mã hóa đơn chi tiết</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Hình thức xử lý</th>
+                        <th scope="col">Ghi chú</th>
+                        <th scope="col">Tình trạng</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody ng-if="ListdetailsCTbyID" ng-repeat="x in ListdetailsCTbyID">
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{x.id}}</td>
+                            <td>{{x.idhdct}}</td>
+                            <td>{{x.soluong}}</td>
+                            <td>{{x.hinhthucxuly}}</td>
+                            <td>{{x.ghichu}}</td>
+                            <td>{{x.tinhtrang}}</td>
+                            <td>
+                                <button type="button" class="btn btn-success">Chi tiết</button>
+                                <button type="button" class="btn btn-warning">Sửa</button>
+                                <button type="button" class="btn btn-danger">Xóa</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
